@@ -1,0 +1,19 @@
+---
+
+# due to bug with package_facts https://github.com/ansible/ansible/issues/60889
+# workaround with shell
+- name: check if unattended-upgrades package is installed
+  shell: dpkg --list | grep unattended-upgrades  # noqa 306
+  register: unattended_found
+  changed_when: false
+  failed_when: false
+  when: not ansible_check_mode
+
+- name: deploy auto-upgrades configuration
+  copy:
+    src: auto-upgrades
+    dest: /etc/apt/apt.conf.d/20auto-upgrades
+    mode: 0644
+    owner: root
+    group: root
+  when: unattended_found.rc is defined and unattended_found.rc == 0

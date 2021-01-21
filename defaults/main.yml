@@ -1,0 +1,8 @@
+---
+default_sshd_params:
+  - { key: 'PermitRootLogin', value: 'without-password' }
+  - { key: 'DebianBanner', value: 'no' }
+  - { key: 'PasswordAuthentication', value: 'no' }
+
+sshd_params: []
+security_disable_hidepid_changing: false

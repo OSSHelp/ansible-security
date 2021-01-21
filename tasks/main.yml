@@ -1,0 +1,23 @@
+---
+- name: gather required facts
+  setup:
+    gather_subset: [virtual]
+  when: ansible_virtualization_type is not defined
+
+- name: populate service facts
+  service_facts:
+
+- name: create list of services
+  set_fact:
+    service_list: "{{ ansible_facts.services.values() | map(attribute='name') | list }}"
+
+- import_tasks: ssh.yml
+  when: '"sshd.service" in service_list'
+
+- import_tasks: root-dir.yml
+
+- import_tasks: hidepid.yml
+  when: not security_disable_hidepid_changing
+  tags: [hidepid]
+
+- import_tasks: unattended-upgrades.yml
