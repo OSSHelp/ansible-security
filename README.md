@@ -14,16 +14,19 @@ Role that manages security settings. For now::
 ```yaml
     - role: security
       security_disable_hidepid_changing: true
+      security_ssh_keys:
+        - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCtwDaffh9xxl1I8Acb40iO6fSBcDf1w7rBwc1g+eFW1vqNPyZ9WqF9HcR17ekt5uucRCVRHbKF4YKyVxSw2THt+nfLplOazSSYqoHvTrhSix22QUUTQWi9mvOTOgvnazKsR7M2tgPvUcCI5osTuRNwD7mipZyIDGTZKvnqByjgG/qX8TvoSvoqYSf7BuGsUwElGm1My6hAF3zyysNxYikPVEHULacsPKti6xj+Sl3OW7RCH8MoXsArPhlBWyupgl3FWHVwOoMJ9Fp6izvuvOLUoACSPI2glX9KrjPOy9JK9X5tFuCYg+rzClTq956Nt1rsk4TvoVHYQkYp3VOtgg1l
 ```
 
 ## Available parameters
 
 | Param | Description |
 | -------- | -------- |
-| default_sshd_params | contains list of default params for sshd, doublecheck if you override it! |
-| default_sysctl_params | contains list of default system params, doublecheck if you override it! |
-| sshd_params | list for setting custom params for sshd, empty by default |
-| security_disable_hidepid_changing | if set to "true" - hidepid setup will be skipped. This will not revert any of already made mount options or scripts |
+| `default_sshd_params` | contains list of default params for sshd, doublecheck if you override it! |
+| `default_sysctl_params` | contains list of default system params, doublecheck if you override it! |
+| `sshd_params` | list for setting custom params for sshd, empty by default |
+| `security_disable_hidepid_changing` | if set to "true" - hidepid setup will be skipped. This will not revert any of already made mount options or scripts |
+| `security_ssh_keys` | contains list of public ssh key to add to the server |
 
 ## FAQ
 
