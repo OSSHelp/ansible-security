@@ -21,21 +21,8 @@
   loop: "{{ finalized_sshd_params }}"
   notify: ssh restart
 
-- name: add ssh keys
-  block:
-    - name: chattr -i authorized_keys
-      file:
-        path: /root/.ssh/authorized_keys
-        attributes: -i
-      when: ansible_virtualization_type != 'lxc'
-    - name: copying ssh public keys
-      lineinfile:
-        line: "{{ item }}"
-        dest: "/root/.ssh/authorized_keys"
-      loop: "{{ security_ssh_keys }}"
-    - name: chattr +i authorized_keys
-      file:
-        path: /root/.ssh/authorized_keys
-        attributes: +i
-      when: ansible_virtualization_type != 'lxc'
-  when: security_ssh_keys is defined
+- name: chattr +i authorized_keys
+  file:
+    path: /root/.ssh/authorized_keys
+    attributes: +i
+  when: ansible_virtualization_type != 'lxc'
