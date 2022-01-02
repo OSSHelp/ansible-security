@@ -17,3 +17,13 @@
     owner: root
     group: root
   when: unattended_found.rc is defined and unattended_found.rc == 0
+
+- name: disable apt timers
+  service:
+    name: "{{ item }}"
+    enabled: false
+    state: stopped
+  with_items:
+    - apt-daily.timer
+    - apt-daily-upgrade.timer
+  when: ansible_distribution_release in ['focal']
