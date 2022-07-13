@@ -1,7 +1,7 @@
 ---
 - name: create /etc/rc.local if doesn't exist
-  copy:
-    src: rc.local
+  template:
+    src: rc.local.j2
     dest: /etc/rc.local
     mode: 0755
     owner: root

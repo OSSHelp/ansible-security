@@ -20,4 +20,4 @@
   when: not security_disable_hidepid_changing
   tags: [hidepid]
 
-- import_tasks: unattended-upgrades.yml
+- import_tasks: apt.yml
