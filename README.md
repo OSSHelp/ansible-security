@@ -1,11 +1,12 @@
 # security
 
-[![Build Status](https://drone.osshelp.ru/api/badges/ansible/security/status.svg)](https://drone.osshelp.ru/ansible/security)
+[![Build Status](https://drone.osshelp.io/api/badges/ansible/security/status.svg)](https://drone.osshelp.io/ansible/security)
 
-Role that manages security settings. For now::
+Role that manages security settings. For now:
 
 - manages sshd params
 - ensures /root has strict permissions
+- hardens permissions for grub.cfg and a bunch of other dirs/files, see `security_permissions` list in [defaults](defaults/main.yml)
 - manages hidepid param for /proc
 - disables auto-upgrades
 
@@ -24,6 +25,7 @@ Role that manages security settings. For now::
 | `default_sysctl_params` | contains list of default system params, doublecheck if you override it! |
 | `sshd_params` | list for setting custom params for sshd, empty by default |
 | `security_disable_hidepid_changing` | if set to "true" - hidepid setup will be skipped. This will not revert any of already made mount options or scripts |
+| `security_permissions` | see [defaults](defaults/main.yml) | list, describing proper permissions for dirs/files, that will be set |
 
 ## FAQ
 

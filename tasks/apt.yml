@@ -1,5 +1,4 @@
 ---
-
 - name: disable auto apt updates/upgrades
   template:
     src: apt.j2

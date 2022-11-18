@@ -14,6 +14,11 @@
 - import_tasks: ssh.yml
   when: '"sshd.service" in service_list'
 
+- import_tasks: banners.yml
+  when: '"vsftpd.service" in service_list'
+
+- import_tasks: permissions.yml
+
 - import_tasks: root-dir.yml
 
 - import_tasks: hidepid.yml
